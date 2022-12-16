@@ -40,16 +40,95 @@ export class AppComponent {
 	search(searchTerm: string): void {
 		let matchingSatellites: Satellite[] = [];
 		searchTerm = searchTerm.toLowerCase();
+		// loop through satellite objects list
 		for(let i=0; i < this.sourceList.length; i++) {
+			// isolate the names, orbit types, types
 			let name = this.sourceList[i].name.toLowerCase();
-			if (name.indexOf(searchTerm) >= 0) {
+			let orbitType = this.sourceList[i].orbitType.toLowerCase();
+ 	 		let type = this.sourceList[i].type.toLowerCase();
+			//find the index if the searchterm in names & orbit types, of it exists, push to matching satellites
+			//if orbit type is the same as searchterm Ex: high == high && low == low, push to array
+			if (name.indexOf(searchTerm) >= 0 || type.indexOf(searchTerm) >= 0 || orbitType == searchTerm) {
 				matchingSatellites.push(this.sourceList[i]);
 			}
+				
 		}
 		// assign this.displayList to be the array of matching satellites
 		// this will cause Angular to re-make the table, but now only containing matches
 		this.displayList = matchingSatellites;
 	}
-
-
 }
+
+
+
+
+// original
+// search(searchTerm: string): void {
+// 	let matchingSatellites: Satellite[] = [];
+// 	searchTerm = searchTerm.toLowerCase();
+// 	// loop through satellite objects list
+// 	for(let i=0; i < this.sourceList.length; i++) {
+// 		// isolate the names
+// 		let name = this.sourceList[i].name.toLowerCase();
+// 		//find the index if the searchterm, of it exists, push to matching satellites
+// 		if (name.indexOf(searchTerm) >= 0) {
+// 			matchingSatellites.push(this.sourceList[i]);
+// 		}
+// 	}
+// 	// assign this.displayList to be the array of matching satellites
+// 	// this will cause Angular to re-make the table, but now only containing matches
+// 	this.displayList = matchingSatellites;
+// }
+
+
+//failed attempt #1
+// search(searchTerm: string): void {
+// 	let matchingSatellites: Satellite[] = [];
+// 	let matchingOrbitTypes: Satellite [] = [];
+// 	let matchingTypes: Satellite [] = [];
+
+// 	searchTerm = searchTerm.toLowerCase();
+// 	for(let i=0; i < this.sourceList.length; i++) {
+// 		let name = this.sourceList[i].name.toLowerCase();
+// 		let orbitType = this.sourceList[i].orbitType.toLowerCase();
+// 		let type = this.sourceList[i].type.toLowerCase();
+// 		if (name.indexOf(searchTerm) >= 0 || orbitType.indexOf(searchTerm) >= 0 || type.indexOf(searchTerm)) {
+// 			matchingSatellites.push(this.sourceList[i]);
+// 			matchingOrbitTypes.push(this.sourceList[i]);
+// 			matchingTypes.push(this.sourceList[i]);
+// 		}
+// 	}
+// 	// assign this.displayList to be the array of matching satellites
+// 	// this will cause Angular to re-make the table, but now only containing matches
+// 	this.displayList = matchingSatellites;
+// }
+
+
+//attempt no 2, close but will push the same array more than once
+// search(searchTerm: string): void {
+// 	let matchingSatellites: Satellite[] = [];
+// 	searchTerm = searchTerm.toLowerCase();
+// 	// loop through satellite objects list
+// 	for(let i=0; i < this.sourceList.length; i++) {
+// 		// isolate the names, orbit types, types
+// 		let name = this.sourceList[i].name.toLowerCase();
+// 		let orbitType = this.sourceList[i].orbitType.toLowerCase();
+// 		  let type = this.sourceList[i].type.toLowerCase();
+// 		//find the index if the searchterm in names, of it exists, push to matching satellites
+// 		if (name.indexOf(searchTerm) >= 0) {
+// 			matchingSatellites.push(this.sourceList[i]);
+// 		}
+// 		//find index of search terms in types, if exists, push
+// 		if (type.indexOf(searchTerm) >= 0) {
+// 			matchingSatellites.push(this.sourceList[i]);
+// 		}
+// 		//if orbit type is the same as searchterm Ex: high == high && low == low, push to array
+// 		if (orbitType == searchTerm) {
+// 			matchingSatellites.push(this.sourceList[i]);
+// 		}	
+// 	}
+// 	// assign this.displayList to be the array of matching satellites
+// 	// this will cause Angular to re-make the table, but now only containing matches
+// 	this.displayList = matchingSatellites;
+// }
+// }

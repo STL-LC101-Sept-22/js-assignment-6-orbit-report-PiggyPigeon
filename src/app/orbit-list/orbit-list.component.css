@@ -26,3 +26,11 @@ th, td {
 	margin: 5px 10px;
 	padding: 6px;
 }
+
+.even {
+	background: rgb(142, 195, 142)
+}
+
+.odd {
+	background: rgb(132, 104, 157);
+}
