@@ -6,15 +6,34 @@
         <th>Orbit Type</th>
         <th>Launch Date</th>
     </tr>
-    <tr class="data-row">
-        <td>GPS 938</td>
-        <td>Positioning</td>
-        <td>true</td>
-        <td>HIGH</td>
-        <td>2001-11-01</td>
+    <tr class="data-row" *ngFor="let satellite of satellites">
+        <td>{{satellite.name}}</td>
+        <td [class.warning]="satellite.isSpaceDebris()">{{satellite.type}}</td>
+        <td>{{satellite.launchDate}}</td>
+        <td>{{satellite.orbitType}}</td>
+        <td>{{satellite.operational}}</td>
     </tr>
 </table>
 
-<!-- TODO 2b: use *ngFor to display satellite data in the table -->
+<!-- [class.warning]="isSpaceDebris(satellite.type)" -->
+
 <!-- TODO 3b: add style directive to conditionally highlight satellite type -->
 
+<!-- module.exports = "<table>\n\t<tr class=\"header-row\">\n\t\t<th (click)=\"sort('name')\" 
+class=\"sortable\">Name</th>
+\n\t\t<th (click)=\"sort('type')\" class=\"sortable\">Type</th>
+\n\t\t<th>Operational</th>\n\t\t
+<th>Orbit Type</th>\n\t\t
+<th>Launch Date</th>
+\n\t</tr>\n\t
+<tr class=\"data-row\" *ngFor=\"let satellite of satellites\">
+\n\t\t<td>{{satellite.name}}</td>\n\t\t -->
+<!-- TODO 3b: add style directive to conditionally highlight satellite type -->
+<!-- \n\t\t<td [class.warning]=\"satellite.isSpaceDebris()\">
+{{satellite.type}}</td>\n\t\t<td>
+{{satellite.operational}}</td>\n\t\t
+<td>{{satellite.orbitType}}</td>\n\t\t
+<td>{{satellite.launchDate}}</td>\n\t
+</tr>\n</table>\n\n -->
+<!-- TODO 2b: use *ngFor to display satellite data in the table -->
+<!-- TODO 3b: add style directive to conditionally highlight satellite type -->
